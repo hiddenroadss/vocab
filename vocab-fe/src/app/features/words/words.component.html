@@ -1,0 +1,22 @@
+<div class="container mx-auto p-6" *ngIf="words$ | async as words">
+  <h2 class="text-xl font-bold mb-4">Words</h2>
+  <ul class="space-y-2">
+    <li
+      class="p-3 bg-white border rounded shadow flex justify-between items-center"
+      *ngFor="let word of words"
+    >
+      <div>
+        <h3 class="font-medium">{{ word.text }}</h3>
+        <p class="text-sm text-gray-600">{{ word.meaning }}</p>
+      </div>
+      <div>
+        <span
+          class="material-symbols-outlined cursor-pointer"
+          [routerLink]="['/words-edit', word.id]"
+        >
+          edit
+        </span>
+      </div>
+    </li>
+  </ul>
+</div>

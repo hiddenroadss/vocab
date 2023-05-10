@@ -1,0 +1,47 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-xl font-bold mb-4">Редагувати слово:</h2>
+  <form
+    class="space-y-4"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    autocomplete="off"
+  >
+    <div>
+      <label for="text" class="block text-sm font-medium text-gray-700"
+        >Текст</label
+      >
+      <input
+        id="text"
+        formControlName="text"
+        type="text"
+        class="mt-1 block p-3 w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+      />
+    </div>
+    <div>
+      <label for="meaning" class="block text-sm font-medium text-gray-700"
+        >Значення</label
+      >
+      <input
+        id="meaning"
+        formControlName="meaning"
+        type="text"
+        class="mt-1 block p-3 w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+      />
+    </div>
+    <div class="flex justify-start gap-5">
+      <button
+        type="button"
+        class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400"
+        routerLink="/words"
+      >
+        Назад
+      </button>
+      <button
+        type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400"
+      >
+        Створити
+      </button>
+    </div>
+  </form>
+</div>
