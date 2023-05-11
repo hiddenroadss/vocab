@@ -1,0 +1,30 @@
+<div class="container mx-auto p-6" *ngIf="lists$ | async as lists">
+  <h2 class="text-xl font-bold mb-4">Мої карти:</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Карта 1 -->
+    <div class="p-4 border rounded shadow" *ngFor="let list of lists">
+      <img
+        [src]="list.coverImageUrl"
+        alt="Image description"
+        class="w-full h-32 object-cover rounded mb-2"
+      />
+      <h3
+        class="font-medium mb-2 cursor-pointer"
+        [routerLink]="['/lists-details', list.id]"
+      >
+        {{ list.name }}
+      </h3>
+      <div class="flex justify-between">
+        <p class="text-sm text-gray-600">
+          Кількість слів: {{ list.words.length }}
+        </p>
+        <span
+          class="material-symbols-outlined cursor-pointer"
+          [routerLink]="['/lists-edit', list.id]"
+        >
+          edit
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

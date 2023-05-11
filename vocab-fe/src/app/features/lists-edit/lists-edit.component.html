@@ -1,0 +1,108 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-xl font-bold mb-4">Редагувати список:</h2>
+  <form
+    class="space-y-4"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+    autocomplete="off"
+  >
+    <div>
+      <label for="name" class="block text-sm font-medium text-gray-700"
+        >Назва</label
+      >
+      <input
+        id="name"
+        formControlName="name"
+        type="text"
+        class="mt-1 block p-3 w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+      />
+    </div>
+    <div>
+      <label for="coverImageUrl" class="block text-sm font-medium text-gray-700"
+        >Картинка</label
+      >
+      <input
+        id="coverImageUrl"
+        formControlName="coverImageUrl"
+        type="text"
+        class="mt-1 block p-3 w-full rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+      />
+    </div>
+
+    <fieldset class="flex flex-col border border-gray-300 rounded-2xl p-4">
+      <legend class="block text-sm font-medium text-gray-700">Слова</legend>
+      <div class="relative" *ngIf="words$ | async as words">
+        <input
+          class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+          type="text"
+          (keyup)="onKeyUp(words)"
+          [formControl]="search"
+          placeholder="Пошук..."
+        />
+        <ul
+          *ngIf="filteredOptions.length > 0"
+          class="absolute w-full mt-1 bg-white rounded shadow-lg"
+        >
+          <li
+            *ngFor="let option of filteredOptions"
+            (click)="addWord(option)"
+            class="px-4 py-2 hover:bg-indigo-500 hover:text-white cursor-pointer"
+          >
+            {{ option.text }}
+          </li>
+        </ul>
+      </div>
+      <div
+        *ngFor="let word of form.controls.words.controls; index as i"
+        [formGroup]="word"
+        class="flex justify-between gap-4"
+      >
+        <div class="basis-1/3 flex flex-col grow">
+          <label class="block text-sm font-medium text-gray-700" for="text"
+            >Name</label
+          >
+          <input
+            type="text"
+            id="text"
+            class="mt-1 block p-3 rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            formControlName="text"
+          />
+        </div>
+        <div class="basis-1/3 flex flex-col grow">
+          <label class="block text-sm font-medium text-gray-700" for="meaning"
+            >Meaning</label
+          >
+
+          <input
+            type="text"
+            id="meaning"
+            class="mt-1 block p-3 rounded-md bg-gray-100 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+            formControlName="meaning"
+          />
+        </div>
+        <button
+          (click)="removeWord(i)"
+          type="button"
+          class="py-2 px-4 border self-end hover:border-blue-300 focus:border-blue-500"
+        >
+          X
+        </button>
+      </div>
+    </fieldset>
+    <div class="flex justify-start gap-5">
+      <button
+        type="button"
+        class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400"
+        routerLink="/lists"
+      >
+        Назад
+      </button>
+      <button
+        type="submit"
+        class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400"
+      >
+        Зберегти
+      </button>
+    </div>
+  </form>
+</div>

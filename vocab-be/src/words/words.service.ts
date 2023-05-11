@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CreateWordDto } from './dto/create-word.dto';
 import { UpdateWordDto } from './dto/update-word.dto';
 
-let id = 2;
+let id = 6;
 
 @Injectable()
 export class WordsService {
@@ -16,6 +16,26 @@ export class WordsService {
       id: 1,
       text: 'eternity',
       meaning: 'time that never ends or that has no limits',
+    },
+    {
+      id: 2,
+      text: 'permanent',
+      meaning: 'time that never ends or that has no limits',
+    },
+    {
+      id: 3,
+      text: 'afterwards',
+      meaning: 'at a later time',
+    },
+    {
+      id: 4,
+      text: 'for good',
+      meaning: 'permanently, forever',
+    },
+    {
+      id: 5,
+      text: 'for the time being',
+      meaning: 'for now, until something changed',
     },
   ];
   create(createWordDto: CreateWordDto) {

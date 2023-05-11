@@ -21,6 +21,32 @@ const routes: Routes = [
         (m) => m.WordsEditModule
       ),
   },
+  {
+    path: 'lists',
+    loadChildren: () =>
+      import('./features/lists/lists.module').then((m) => m.ListsModule),
+  },
+  {
+    path: 'lists-create',
+    loadChildren: () =>
+      import('./features/lists-create/lists-create.module').then(
+        (m) => m.ListsCreateModule
+      ),
+  },
+  {
+    path: 'lists-edit/:id',
+    loadChildren: () =>
+      import('./features/lists-edit/lists-edit.module').then(
+        (m) => m.ListsEditModule
+      ),
+  },
+  {
+    path: 'lists-details/:id',
+    loadChildren: () =>
+      import('./features/lists-details/lists-details.module').then(
+        (m) => m.ListsDetailsModule
+      ),
+  },
   { path: '**', redirectTo: 'words' },
 ];
 

@@ -1,0 +1,25 @@
+{
+  "name": "vocab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --names \"Frontend,Backend\" --prefix-colors \"blue.bold,green.bold\" \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "cd vocab-fe && ng serve",
+    "start:backend": "cd vocab-be && npm run start:dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hiddenroadss/vocab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hiddenroadss/vocab/issues"
+  },
+  "homepage": "https://github.com/hiddenroadss/vocab#readme",
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}

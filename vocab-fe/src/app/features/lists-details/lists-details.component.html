@@ -1,0 +1,25 @@
+<div class="container mx-auto my-10" *ngIf="list$ | async as list">
+  <!-- Назва списку -->
+  <h2 class="mb-6 text-2xl font-bold text-center text-indigo-900">
+    {{ list.name }}
+  </h2>
+
+  <!-- Картинка списку -->
+  <div class="flex justify-center mb-8">
+    <img [src]="list.coverImageUrl" alt="{{ list.name }}" class="w-64 h-64" />
+  </div>
+
+  <!-- Список слів -->
+  <div class="grid grid-cols-2 gap-4">
+    <div *ngFor="let word of list.words" class="p-4 bg-white rounded shadow-lg">
+      <h3 class="text-lg font-bold text-indigo-900">{{ word.text }}</h3>
+      <p>{{ word.meaning }}</p>
+    </div>
+  </div>
+
+  <button
+    class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400"
+  >
+    Learn
+  </button>
+</div>
