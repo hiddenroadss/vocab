@@ -1,0 +1,25 @@
+<div class="w-full mx-auto">
+  <div class="bg-white shadow-md rounded my-6">
+    <ul class="list-reset flex border-b">
+      <li
+        *ngFor="let tab of tabs; let i = index"
+        class="-mb-px mr-2 last:mr-0 flex-auto text-center"
+        [class.selected]="selectedTab === i"
+      >
+        <a
+          (click)="selectTab(i)"
+          class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal cursor-pointer"
+          [class.bg-blue-500]="selectedTab === i"
+          [class.text-white]="selectedTab === i"
+          [class.bg-white]="selectedTab !== i"
+          [class.text-blue-800]="selectedTab !== i"
+        >
+          {{ tab.tabTitle }}
+        </a>
+      </li>
+    </ul>
+    <div class="p-6">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

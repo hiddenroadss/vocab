@@ -47,6 +47,7 @@ const routes: Routes = [
         (m) => m.ListsDetailsModule
       ),
   },
+  { path: 'learn/:id', loadChildren: () => import('./features/learn/learn.module').then(m => m.LearnModule) },
   { path: '**', redirectTo: 'words' },
 ];
 

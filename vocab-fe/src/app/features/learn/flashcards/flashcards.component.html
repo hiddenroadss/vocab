@@ -1,0 +1,45 @@
+<h2 class="mb-6 text-2xl font-bold text-center text-indigo-900">
+  {{ listName }}
+</h2>
+
+<!-- Картка слова -->
+<div class="relative w-64 h-64 mx-auto mt-10" *ngIf="currentWord">
+  <div
+    class="absolute w-full h-full bg-white border border-indigo-300 rounded shadow-lg cursor-pointer"
+    (click)="isFlipped = !isFlipped"
+    [@flip]="isFlipped ? 'active' : 'inactive'"
+  >
+    <!-- Текст слова -->
+    <div
+      class="flex items-center justify-center h-full text-3xl font-bold text-indigo-900"
+      *ngIf="!isFlipped"
+    >
+      {{ currentWord.text }}
+    </div>
+    <!-- Переклад слова -->
+    <div
+      class="back-face absolute w-full h-full flex items-center justify-center text-lg text-indigo-700"
+      *ngIf="isFlipped"
+    >
+      {{ currentWord.meaning }}
+    </div>
+  </div>
+</div>
+
+<!-- Кнопки навігації -->
+<div class="flex justify-between mt-8">
+  <button
+    [disabled]="currentIndex === 0"
+    (click)="previousWord()"
+    class="px-4 py-2 text-white bg-indigo-600 rounded shadow hover:bg-indigo-500 disabled:bg-gray-300"
+  >
+    Попереднє слово
+  </button>
+  <button
+    [disabled]="currentIndex === words.length - 1"
+    (click)="nextWord()"
+    class="px-4 py-2 text-white bg-indigo-600 rounded shadow hover:bg-indigo-500 disabled:bg-gray-300"
+  >
+    Наступне слово
+  </button>
+</div>

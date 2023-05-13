@@ -1,0 +1,19 @@
+<div
+  class="container mx-auto my-10 p-10 bg-white rounded shadow-lg"
+  *ngIf="list$ | async as list"
+>
+  <!-- Назва списку -->
+  <app-tabset>
+    <app-tab tabTitle="Картки" [active]="true">
+      <app-flashcards
+        [listName]="list.name"
+        [currentWord]="currentWord"
+        [words]="list.words"
+      ></app-flashcards>
+    </app-tab>
+
+    <app-tab tabTitle="Learn">
+      <app-tests [wordsToTest]="list.words"></app-tests>
+    </app-tab>
+  </app-tabset>
+</div>
