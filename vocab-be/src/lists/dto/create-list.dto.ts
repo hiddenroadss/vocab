@@ -1,7 +1,12 @@
-import { Word } from 'src/words/entities/word.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateListDto {
+  @ApiProperty()
   name: string;
+
+  @ApiProperty({ required: false })
   coverImageUrl: string;
-  words: Word[];
+
+  @ApiProperty()
+  wordIds: number[];
 }

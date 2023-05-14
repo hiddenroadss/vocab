@@ -1,73 +1,34 @@
 import { Injectable } from '@nestjs/common';
 import { CreateWordDto } from './dto/create-word.dto';
 import { UpdateWordDto } from './dto/update-word.dto';
-
-let id = 6;
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class WordsService {
-  private words = [
-    {
-      id: 0,
-      text: 'fall flat',
-      meaning: 'to not be funny or entertaining',
-    },
-    {
-      id: 1,
-      text: 'eternity',
-      meaning: 'time that never ends or that has no limits',
-    },
-    {
-      id: 2,
-      text: 'permanent',
-      meaning: 'time that never ends or that has no limits',
-    },
-    {
-      id: 3,
-      text: 'afterwards',
-      meaning: 'at a later time',
-    },
-    {
-      id: 4,
-      text: 'for good',
-      meaning: 'permanently, forever',
-    },
-    {
-      id: 5,
-      text: 'for the time being',
-      meaning: 'for now, until something changed',
-    },
-  ];
+  constructor(private prisma: PrismaService) {}
+
   create(createWordDto: CreateWordDto) {
-    const word = {
-      id: id++,
-      ...createWordDto,
-    };
-    this.words.push(word);
-    return word;
+    return this.prisma.word.create({ data: createWordDto });
   }
 
   findAll() {
-    return this.words;
+    return this.prisma.word.findMany();
   }
 
   findOne(id: number) {
-    const word = this.words.find((w) => w.id === id);
-    return word;
+    return this.prisma.word.findUnique({ where: { id } });
   }
 
   update(id: number, updateWordDto: UpdateWordDto) {
-    const wordIndex = this.words.findIndex((w) => w.id === id);
-    this.words[wordIndex] = {
-      ...this.words[wordIndex],
-      ...updateWordDto,
-    };
-    return this.words[wordIndex];
+    return this.prisma.word.update({
+      where: { id },
+      data: updateWordDto,
+    });
   }
 
   remove(id: number) {
-    const wordIndex = this.words.findIndex((w) => w.id === id);
-    this.words.splice(wordIndex);
-    return this.words;
+    return this.prisma.word.delete({
+      where: { id },
+    });
   }
 }

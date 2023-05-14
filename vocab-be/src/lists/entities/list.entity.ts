@@ -1,8 +1,22 @@
-import { Word } from 'src/words/entities/word.entity';
+import { ApiProperty } from '@nestjs/swagger';
+import { List as ListPrisma } from '@prisma/client';
 
-export class List {
+export class List implements ListPrisma {
+  @ApiProperty()
   id: number;
+
+  @ApiProperty()
   name: string;
+
+  @ApiProperty()
   coverImageUrl: string;
-  words: Word[];
+
+  @ApiProperty()
+  wordIds: number[];
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }
