@@ -15,4 +15,8 @@ export class WordsComponent {
   ngOnInit() {
     this.words$ = this.wordsService.getAll();
   }
+
+  deleteWord(word: Word) {
+    this.wordsService.remove(word.id).subscribe();
+  }
 }

@@ -6,7 +6,11 @@
 
   <!-- Картинка списку -->
   <div class="flex justify-center mb-8">
-    <img [src]="list.coverImageUrl" alt="{{ list.name }}" class="w-64 h-64" />
+    <img
+      [src]="list.coverImageUrl || 'assets/images/list-default-cover.jpg'"
+      alt="{{ list.name }}"
+      class="w-64 h-64"
+    />
   </div>
 
   <!-- Список слів -->
@@ -17,10 +21,18 @@
     </div>
   </div>
 
-  <button
-    class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400 mt-4"
-    [routerLink]="['/learn', list.id]"
-  >
-    Learn
-  </button>
+  <div class="flex gap-4">
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400 mt-4"
+      [routerLink]="['/lists']"
+    >
+      Back
+    </button>
+    <button
+      class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-400 mt-4"
+      [routerLink]="['/learn', list.id]"
+    >
+      Learn
+    </button>
+  </div>
 </div>

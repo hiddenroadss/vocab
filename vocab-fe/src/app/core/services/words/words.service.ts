@@ -25,5 +25,7 @@ export class WordsService {
     return this.http.patch<Word>(`${this.BASE_URL}/words/${id}`, word);
   }
 
-  remove() {}
+  remove(id: number) {
+    return this.http.delete<Word>(`${this.BASE_URL}/words/${id}`);
+  }
 }

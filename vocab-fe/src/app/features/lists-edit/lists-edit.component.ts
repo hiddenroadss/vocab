@@ -86,4 +86,10 @@ export class ListsEditComponent {
           .some((w: any) => w.id === option.id)
     );
   }
+
+  deleteList() {
+    this.listsService.remove(this.id).subscribe((data) => {
+      this.router.navigate(['/lists']);
+    });
+  }
 }

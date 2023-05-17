@@ -4,7 +4,7 @@
     <!-- Карта 1 -->
     <div class="p-4 border rounded shadow" *ngFor="let list of lists">
       <img
-        [src]="list.coverImageUrl"
+        [src]="list.coverImageUrl || 'assets/images/list-default-cover.jpg'"
         alt="Image description"
         class="w-full h-32 object-cover rounded mb-2"
       />

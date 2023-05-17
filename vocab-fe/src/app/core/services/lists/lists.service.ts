@@ -17,13 +17,20 @@ export class ListsService {
     return this.http.get<List>(`${this.BASE_URL}/lists/${id}`);
   }
 
-  create(word: Omit<List, 'id'>) {
-    return this.http.post<List>(`${this.BASE_URL}/lists`, word);
+  create(list: any) {
+    const wordIds = list.words.map((w: any) => w.id);
+    delete list.words;
+    return this.http.post<List>(`${this.BASE_URL}/lists`, {
+      ...list,
+      wordIds,
+    });
   }
 
-  update(word: Omit<List, 'id'>, id: number) {
-    return this.http.patch<List>(`${this.BASE_URL}/lists/${id}`, word);
+  update(list: Omit<List, 'id'>, id: number) {
+    return this.http.patch<List>(`${this.BASE_URL}/lists/${id}`, list);
   }
 
-  remove() {}
+  remove(id: number) {
+    return this.http.delete<List>(`${this.BASE_URL}/lists/${id}`);
+  }
 }
