@@ -8,6 +8,7 @@ export class ListsService {
   constructor(private prisma: PrismaService) {}
   create(createListDto: CreateListDto) {
     const { wordIds, ...listData } = createListDto;
+    console.log(createListDto, 'sew');
 
     return this.prisma.list.create({
       data: {

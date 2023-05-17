@@ -1,5 +1,12 @@
 <div class="container mx-auto p-6" *ngIf="lists$ | async as lists">
-  <h2 class="text-xl font-bold mb-4">Мої карти:</h2>
+  <div class="flex justify-between items-center mb-4">
+    <h1 class="text-2xl font-bold">Мої списки:</h1>
+    <a
+      routerLink="/lists-create"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >Add List</a
+    >
+  </div>
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
     <!-- Карта 1 -->
     <div class="p-4 border rounded shadow" *ngFor="let list of lists">

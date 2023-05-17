@@ -29,29 +29,15 @@
       />
     </div>
 
-    <fieldset class="flex flex-col border border-gray-300 rounded-2xl p-4">
+    <fieldset
+      class="flex flex-col border border-gray-300 rounded-2xl p-4"
+      *ngIf="words$ | async as words"
+    >
       <legend class="block text-sm font-medium text-gray-700">Слова</legend>
-      <div class="relative" *ngIf="words$ | async as words">
-        <input
-          class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-          type="text"
-          (keyup)="onKeyUp(words)"
-          [formControl]="search"
-          placeholder="Пошук..."
-        />
-        <ul
-          *ngIf="filteredOptions.length"
-          class="absolute w-full mt-1 bg-white rounded shadow-lg"
-        >
-          <li
-            *ngFor="let option of filteredOptions"
-            (click)="addWord(option)"
-            class="px-4 py-2 hover:bg-indigo-500 hover:text-white cursor-pointer"
-          >
-            {{ option.text }}
-          </li>
-        </ul>
-      </div>
+      <app-autocomplete
+        [options]="words"
+        (selectedOption)="addWord($event)"
+      ></app-autocomplete>
       <div
         *ngFor="let word of form.controls.words.controls; index as i"
         [formGroup]="word"
