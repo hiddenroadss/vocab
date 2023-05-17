@@ -26,8 +26,13 @@ export class ListsService {
     });
   }
 
-  update(list: Omit<List, 'id'>, id: number) {
-    return this.http.patch<List>(`${this.BASE_URL}/lists/${id}`, list);
+  update(list: any, id: number) {
+    const wordIds = list.words.map((w: any) => w.id);
+    delete list.words;
+    return this.http.patch<List>(`${this.BASE_URL}/lists/${id}`, {
+      ...list,
+      wordIds,
+    });
   }
 
   remove(id: number) {

@@ -8,7 +8,6 @@ export class ListsService {
   constructor(private prisma: PrismaService) {}
   create(createListDto: CreateListDto) {
     const { wordIds, ...listData } = createListDto;
-    console.log(createListDto, 'sew');
 
     return this.prisma.list.create({
       data: {
@@ -40,9 +39,18 @@ export class ListsService {
   }
 
   update(id: number, updateListDto: UpdateListDto) {
+    const { wordIds, ...listData } = updateListDto;
+
     return this.prisma.list.update({
       where: { id },
-      data: updateListDto,
+      data: {
+        ...listData,
+        words: wordIds
+          ? {
+              connect: wordIds.map((id) => ({ id })),
+            }
+          : undefined,
+      },
     });
   }
 
