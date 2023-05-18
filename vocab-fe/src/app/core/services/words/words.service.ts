@@ -9,8 +9,10 @@ export class WordsService {
   private BASE_URL = 'http://localhost:3000';
   constructor(private http: HttpClient) {}
 
-  getAll() {
-    return this.http.get<Word[]>(`${this.BASE_URL}/words`);
+  getAll(page = 1, limit = 10) {
+    return this.http.get<Word[]>(
+      `${this.BASE_URL}/words?page=${page}&limit=${limit}`
+    );
   }
 
   getOne(id: number) {

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { WordsService } from './words.service';
 import { CreateWordDto } from './dto/create-word.dto';
@@ -26,8 +27,8 @@ export class WordsController {
 
   @Get()
   @ApiOkResponse({ type: Word, isArray: true })
-  findAll() {
-    return this.wordsService.findAll();
+  findAll(@Query('page') page: string, @Query('limit') limit: string) {
+    return this.wordsService.findAll(+page, +limit);
   }
 
   @Get(':id')

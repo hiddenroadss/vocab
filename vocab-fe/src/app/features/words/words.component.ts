@@ -19,4 +19,23 @@ export class WordsComponent {
   deleteWord(word: Word) {
     this.wordsService.remove(word.id).subscribe();
   }
+
+  page = 1;
+  limit = 10;
+
+  loadWords() {
+    this.words$ = this.wordsService.getAll(this.page, this.limit);
+  }
+
+  nextPage() {
+    this.page++;
+    this.loadWords();
+  }
+
+  prevPage() {
+    if (this.page > 1) {
+      this.page--;
+      this.loadWords();
+    }
+  }
 }
