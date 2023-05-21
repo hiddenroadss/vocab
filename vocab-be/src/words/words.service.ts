@@ -11,7 +11,7 @@ export class WordsService {
     return this.prisma.word.create({ data: createWordDto });
   }
 
-  findAll(page = 1, limit = 10) {
+  findAll(page: number, limit: number) {
     const skipIndex = (page - 1) * limit;
     return this.prisma.word.findMany({
       skip: skipIndex,

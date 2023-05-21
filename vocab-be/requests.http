@@ -1,0 +1,31 @@
+
+POST http://localhost:3000/authentication/sign-in  HTTP/1.1
+content-type: application/json
+
+{
+    "email": "taras@gmail.com",
+    "password": "password111"
+}
+
+###
+
+POST http://localhost:3000/authentication/sign-up  HTTP/1.1
+content-type: application/json
+
+{
+    "email": "taras@gmail.com",
+    "password": "password111"
+}
+
+###
+
+GET http://localhost:3000/words HTTP/1.1    
+
+###
+
+POST http://localhost:3000/authentication/refresh-tokens  HTTP/1.1
+content-type: application/json
+
+{
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjExLCJyZWZyZXNoVG9rZW5JZCI6Ijk4NDllOGRhLTJmZDgtNDBmOC1iYmY4LWI2MmI1NjU4M2YwYSIsImlhdCI6MTY4NDY2MTE2MCwiZXhwIjoxNjg0NzQ3NTYwLCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.VYpu3pz5D-c7BsNT2-ABoopSVMw4TAilbwXNpaFDlYU"
+}

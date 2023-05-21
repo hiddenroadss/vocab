@@ -48,6 +48,7 @@ const routes: Routes = [
       ),
   },
   { path: 'learn/:id', loadChildren: () => import('./features/learn/learn.module').then(m => m.LearnModule) },
+  { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) },
   { path: '**', redirectTo: 'words' },
 ];
 

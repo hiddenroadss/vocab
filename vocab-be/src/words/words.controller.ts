@@ -28,7 +28,11 @@ export class WordsController {
   @Get()
   @ApiOkResponse({ type: Word, isArray: true })
   findAll(@Query('page') page: string, @Query('limit') limit: string) {
-    return this.wordsService.findAll(+page, +limit);
+    let pageInt = parseInt(page);
+    let limitInt = parseInt(limit);
+    if (isNaN(pageInt)) pageInt = 1;
+    if (isNaN(limitInt)) limitInt = 10;
+    return this.wordsService.findAll(pageInt, limitInt);
   }
 
   @Get(':id')
