@@ -10,5 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AuthComponent, RegisterComponent, LoginComponent],
   imports: [CommonModule, AuthRoutingModule, ReactiveFormsModule],
+  providers: [],
 })
 export class AuthModule {}

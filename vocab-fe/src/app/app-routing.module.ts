@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './features/auth/guards/auth.guard';
 
 const routes: Routes = [
   {
     path: 'words',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/words/words.module').then((m) => m.WordsModule),
   },
@@ -47,8 +49,16 @@ const routes: Routes = [
         (m) => m.ListsDetailsModule
       ),
   },
-  { path: 'learn/:id', loadChildren: () => import('./features/learn/learn.module').then(m => m.LearnModule) },
-  { path: 'auth', loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule) },
+  {
+    path: 'learn/:id',
+    loadChildren: () =>
+      import('./features/learn/learn.module').then((m) => m.LearnModule),
+  },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./features/auth/auth.module').then((m) => m.AuthModule),
+  },
   { path: '**', redirectTo: 'words' },
 ];
 
