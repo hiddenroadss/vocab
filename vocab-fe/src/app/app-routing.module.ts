@@ -11,6 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'words-create',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/words-create/words-create.module').then(
         (m) => m.WordsCreateModule
@@ -18,6 +19,7 @@ const routes: Routes = [
   },
   {
     path: 'words-edit/:id',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/words-edit/words-edit.module').then(
         (m) => m.WordsEditModule
@@ -25,11 +27,13 @@ const routes: Routes = [
   },
   {
     path: 'lists',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/lists/lists.module').then((m) => m.ListsModule),
   },
   {
     path: 'lists-create',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/lists-create/lists-create.module').then(
         (m) => m.ListsCreateModule
@@ -37,6 +41,7 @@ const routes: Routes = [
   },
   {
     path: 'lists-edit/:id',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/lists-edit/lists-edit.module').then(
         (m) => m.ListsEditModule
@@ -44,6 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'lists-details/:id',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/lists-details/lists-details.module').then(
         (m) => m.ListsDetailsModule
@@ -51,6 +57,7 @@ const routes: Routes = [
   },
   {
     path: 'learn/:id',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./features/learn/learn.module').then((m) => m.LearnModule),
   },
@@ -59,7 +66,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./features/auth/auth.module').then((m) => m.AuthModule),
   },
-  { path: '**', redirectTo: 'words' },
+  { path: '**', redirectTo: 'auth/sign-in' },
 ];
 
 @NgModule({

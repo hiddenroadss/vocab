@@ -12,7 +12,7 @@ export class AuthService {
   private BASE_URL = 'http://localhost:3000';
   private readonly ACCESS_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
-  private loggedUser: string | null = null;
+  public loggedUser: string | null = null;
   constructor(private http: HttpClient) {}
 
   signUp(user: User) {
@@ -36,18 +36,7 @@ export class AuthService {
   }
 
   signOut() {
-    return this.http
-      .post<any>(`${this.BASE_URL}/authentication/sign-out`, {
-        refreshToken: this.getRefreshToken(),
-      })
-      .pipe(
-        tap(() => this.doLogoutUser()),
-        map(() => true),
-        catchError((error) => {
-          // alert(error.error);
-          return of(false);
-        })
-      );
+    this.doLogoutUser();
   }
 
   isLoggedIn() {
@@ -82,10 +71,6 @@ export class AuthService {
 
   private getRefreshToken() {
     return localStorage.getItem(this.REFRESH_TOKEN);
-  }
-
-  private storeJwtToken(jwt: string) {
-    localStorage.setItem(this.ACCESS_TOKEN, jwt);
   }
 
   private storeTokens(tokens: Tokens) {
