@@ -2,7 +2,7 @@
   <div class="flex justify-between items-center mb-4">
     <h1 class="text-2xl font-bold">Words</h1>
     <a
-      routerLink="/words-create"
+      routerLink="/words/create"
       class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >Add Word</a
     >
@@ -19,7 +19,7 @@
       <div>
         <span
           class="material-symbols-outlined cursor-pointer"
-          [routerLink]="['/words-edit', word.id]"
+          [routerLink]="['/words/edit', word.id]"
         >
           edit
         </span>
